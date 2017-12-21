@@ -18,5 +18,19 @@
 *.tar.gz
 *.rar
 
+# Eclipse stuff
+**/.settings
+**/.classpath
+**/.project
+
+# Targets
+**/target
+
+# Security reasons
+**/camunda-license.txt
+
+# Runtime
+**/camunda-db.mv.db
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
