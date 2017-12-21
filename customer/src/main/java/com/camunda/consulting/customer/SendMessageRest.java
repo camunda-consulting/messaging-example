@@ -1,5 +1,8 @@
 package com.camunda.consulting.customer;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.slf4j.Logger;
@@ -14,8 +17,23 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class SendMessageRest implements JavaDelegate {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SendMessageRest.class);
-	private static final String HOST_ORDER_FULFILLER = "localhost:8081";
-	private static final String REST_ENDPOINT = "http://" + HOST_ORDER_FULFILLER + "/rest/message";
+
+	private static final String HOST_ORDER_FULFILLER;
+	static {
+		boolean gotIt = false;
+		try {
+			InetAddress.getByName("fulfiller");
+			gotIt = true;
+		} catch (UnknownHostException e) {
+			// just don't die
+		}
+		if (gotIt) {
+			HOST_ORDER_FULFILLER = "fulfiller";
+		} else {
+			HOST_ORDER_FULFILLER = "localhost";
+		}
+	}
+	private static final String REST_ENDPOINT = "http://" + HOST_ORDER_FULFILLER + ":8081/rest/message";
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
