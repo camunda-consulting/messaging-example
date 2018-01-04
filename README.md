@@ -6,11 +6,11 @@ Here is the collaboration:
 
 ![collaboration](docs/collaboration.png)
 
-Both processes run in a spring-boot application build with the [camunda-spring-boot-starter](https://docs.camunda.org/manual/7.8/user-guide/spring-boot-integration/).
+Each process runs in it's own spring-boot application build with the [camunda-spring-boot-starter](https://docs.camunda.org/manual/7.8/user-guide/spring-boot-integration/).
 
 Both engine communicates via REST Api to send messages. In this special case, there is no message conversion needed, as both know their partner. See [the rest api](https://docs.camunda.org/manual/7.8/reference/rest/message/post-message/) for details how to send a message. The correlation is done with the business key here.
 
-This rest call can be easly implemented in a spring-boot application. The http client implementation comes with the dependency to spring-web and is easy to code in a [deletegate class](customer/src/main/java/com/camunda/consulting/customer/SendMessageRest.java). The overhead to get the IP address of the partner is done to run the example in a docker environment as well.
+This rest call can be easly implemented in a spring-boot application. The http client implementation comes with the dependency to spring-web and is easy to code in a [deletegate class](customer/src/main/java/com/camunda/consulting/customer/SendMessageRest.java). The overhead to get the IP address of the partner is done to run the example in a docker environment as well ([see below](#run-the-example-on-docker)).
 
 To get some traffic on the orders, the customer uses an [order simulator](customer/src/main/java/com/camunda/consulting/customer/OrderSimulator.java), which is a [scheduled bean](https://spring.io/guides/gs/scheduling-tasks/), to send a new order every five seconds.
 
@@ -18,7 +18,7 @@ The order fulfiller has a [user simulator](orderFulfiller/src/main/java/com/camu
 
 ## How to run the example
 
-Open two terminal windows, change to the directories of `customer` and `orderFulfiller` and enter 
+Open two terminal windows, change to the directories of `customer` and `orderFulfiller` and enter
 ```
 mvn clean spring-boot:run
 ```
@@ -65,12 +65,12 @@ Inspect the logs of each container with either
 docker-compose logs customer
 ```
 
-and 
+and
 
 ```
 docker-compose logs fulfiller
 ```
 
-The [docker-compose.yml file](docker-compose.yml) defines the names `customer`and `fulfiller` and puts both container into a virtual network, where both server can see each other. 
+The [docker-compose.yml file](docker-compose.yml) defines the names `customer`and `fulfiller` and puts both containers into a virtual network, where both server can see each other.
 
 So, the delegate classes can get the IP address of the other participant when they ask for the hostname of these.
