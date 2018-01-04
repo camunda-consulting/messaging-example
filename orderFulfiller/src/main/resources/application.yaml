@@ -11,4 +11,5 @@ camunda.bpm:
   filter:
     create: All tasks
   license-file: file:///camunda-license.txt
+  application.deploy-changed-only: true
 server.port: 8081

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableProcessApplication
+@EnableProcessApplication("orderFulfiller")
 @EnableScheduling
 public class CamundaApplication {
   public static void main(String... args) {

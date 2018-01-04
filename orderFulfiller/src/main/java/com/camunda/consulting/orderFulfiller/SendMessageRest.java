@@ -40,7 +40,7 @@ public class SendMessageRest implements JavaDelegate {
 		String messageName = (String) execution.getVariable("messageName");
 		String businessKey = execution.getProcessBusinessKey();
 
-		LOGGER.info("Sending message {} with business key contraint {}", messageName, businessKey);
+		LOGGER.info("Sending message {} with business key constraint {}", messageName, businessKey);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);

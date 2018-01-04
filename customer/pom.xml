@@ -161,7 +161,8 @@
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>              
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>              
         <configuration>                         
           <mainClass>com.camunda.consulting.customer.CamundaApplication</mainClass>
         </configuration>

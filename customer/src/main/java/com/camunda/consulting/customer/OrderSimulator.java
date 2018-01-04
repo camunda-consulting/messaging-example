@@ -20,7 +20,7 @@ public class OrderSimulator {
 	public void completeOneTaskRandomly() {
 		LOGGER.info("Firing new order");
 		processEngine.getRuntimeService().startProcessInstanceByKey("interEngineMessaging_orderInitiator",
-				Integer.valueOf(++counter).toString());
+				"order number " + Integer.valueOf(++counter));
 	}
 
 	
