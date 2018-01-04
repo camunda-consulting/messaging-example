@@ -8,7 +8,7 @@ Here is the collaboration:
 
 Each process runs in it's own spring-boot application build with the [camunda-spring-boot-starter](https://docs.camunda.org/manual/7.8/user-guide/spring-boot-integration/).
 
-Both engine communicates via REST Api to send messages. In this special case, there is no message conversion needed, as both know their partner. See [the rest api](https://docs.camunda.org/manual/7.8/reference/rest/message/post-message/) for details how to send a message. The correlation is done with the business key here.
+Both engines communicate via REST Api to send messages. In this special case, there is no message conversion needed, as both know their partner. See [the rest api](https://docs.camunda.org/manual/7.8/reference/rest/message/post-message/) for details how to send a message. The correlation is done with the business key here.
 
 This rest call can be easly implemented in a spring-boot application. The http client implementation comes with the dependency to spring-web and is easy to code in a [deletegate class](customer/src/main/java/com/camunda/consulting/customer/SendMessageRest.java). The overhead to get the IP address of the partner is done to run the example in a docker environment as well ([see below](#run-the-example-on-docker)).
 
